@@ -1,7 +1,3 @@
-// basic usage: dice d4 d12 d10
-// expected output:
-//               3 10 1
-
 const std = @import("std");
 
 // internal rapresentation of a dice (just a named value to match on)
@@ -54,7 +50,7 @@ pub fn main() !void {
     // defining the pseudo random number generator
     var prng = std.rand.DefaultPrng.init(blk: {
         var seed: u64 = undefined;
-        try std.os.getrandom(std.mem.asBytes(&seed));
+        try std.posix.getrandom(std.mem.asBytes(&seed));
         break :blk seed;
     });
 
